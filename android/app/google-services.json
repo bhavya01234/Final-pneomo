@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227439004026",
+    "project_id": "pneomo3-b4121",
+    "storage_bucket": "pneomo3-b4121.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227439004026:android:bf36bdb3db70555e482ec3",
+        "android_client_info": {
+          "package_name": "com.example.projects"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw-FO-bSLHQZyuZbcqExMyLKHjbeF6nes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
