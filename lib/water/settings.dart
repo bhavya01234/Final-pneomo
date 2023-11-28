@@ -89,6 +89,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projects/utils/selectImage_utils.dart';
+import 'package:projects/water/signin.dart';
 
 void main() {
   runApp(MyApp());
@@ -143,7 +144,10 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text('Settings'),
       ),
-      body: Padding(
+      body:
+          Container(
+            color: Colors.teal.shade200,
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,19 +188,19 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             SizedBox(height: 20),
-            Text(
-              'Notifications',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Switch(
-              value: _notificationsEnabled,
-              onChanged: (value) {
-                setState(() {
-                  _notificationsEnabled = value;
-                });
-              },
-            ),
-            SizedBox(height: 20),
+            // Text(
+            //   'Notifications',
+            //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            // ),
+            // Switch(
+            //   value: _notificationsEnabled,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       _notificationsEnabled = value;
+            //     });
+            //   },
+            // ),
+            SizedBox(height: 0),
             ElevatedButton(
               onPressed: () {
                 // You can add logic here to handle the settings without persistence
@@ -212,13 +216,17 @@ class _SettingsPageState extends State<SettingsPage> {
               },
               child: Text('Save Settings'),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 0),
             ElevatedButton(
               onPressed: () {
                 // Implement logic for logging out
                 // This could involve clearing user authentication state
                 print('Logout');
-
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => SignInScreen__(), // Replace with your login screen
+                  ),
+                );
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Logged out!'),
@@ -227,8 +235,21 @@ class _SettingsPageState extends State<SettingsPage> {
               },
               child: Text('Logout'),
             ),
+            SizedBox(height: 70),
+            Icon(Icons.policy),
+            SizedBox(height: 7),
+            Text('By using our services, you agree to comply with our terms and conditions. '
+                'These include respecting user privacy, adhering to '
+                'applicable laws, and acknowledging that our content is '
+                'protected by intellectual property rights.',
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 12
+              ),
+            ),
           ],
         ),
+      ),
       ),
     );
   }

@@ -75,8 +75,11 @@ flutter:
   assets:
      - assets/sea.jpg
      - assets/lungs.png
-
-
+     - assets/tarun_sir_pic.jpeg
+     - assets/madhura_pic.jpeg
+     - assets/bhavya_pic.jpeg
+     - assets/heal.png
+     - assets/divya_pic.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

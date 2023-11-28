@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:projects/utils/color_utils.dart';
 import 'package:projects/water/feedback.dart';
 import 'package:projects/water/home_screen.dart';
 import 'package:projects/water/settings.dart';
 import 'package:projects/water/signin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.lightGreen.shade300,
       child: ListView(
-        padding: EdgeInsets.fromLTRB(0.0, 14.0, 0.0, 0.0),
+        padding: EdgeInsets.fromLTRB(0.0, 21.0, 0.0, 0.0),
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Bhavya",
+              "",
               style: TextStyle(
                 color: Colors.yellowAccent,
                 fontWeight: FontWeight.bold,
@@ -21,25 +24,27 @@ class NavDrawer extends StatelessWidget {
               ),
             ),
             accountEmail: Text(
-              "example123@gmail.com",
+              "",
               style: TextStyle(
                 color: Colors.yellowAccent,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
             ),
-
             decoration: BoxDecoration(
               color: Colors.white,
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/sea.jpg'),
+              image:
+              DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage(
+                    'assets/heal.png',
+                ),
               ),
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.input),
-            title: const Text('Welcome'),
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
             onTap: () {
 
               Navigator.of(context).pop();
@@ -49,17 +54,17 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.verified_user),
             title: const Text('Profile'),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).overlay;
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingsPage()));
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.settings),
+          //   title: const Text('Settings'),
+          //   onTap: () {
+          //     Navigator.push(context,
+          //         MaterialPageRoute(builder: (context) => SettingsPage()));
+          //   },
+          // ),
           ListTile(
             leading: Icon(Icons.border_color),
             title: Text('Feedback'),
@@ -70,14 +75,14 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
+            leading: Icon(Icons.info),
             title: Text('About Us'),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => buildAboutUs()));
             },
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
+            leading: Icon(Icons.exit_to_app_rounded),
             title: Text('Logout'),
             onTap: () {
 
@@ -91,72 +96,98 @@ class NavDrawer extends StatelessWidget {
 }
 Widget buildAboutUs() {
   return Scaffold(
-    appBar: AppBar(
-      title: Text('About Us'),
-    ),
-    body: SingleChildScrollView(
-      padding: EdgeInsets.all(16.0),
 
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Our Team',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height:17),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Flexible(
-                child: buildPerson(
-                  'Bhavya Malik',
-                  'Flutter App Developer',
-                  'assets/sea.jpg',
-                ),
-              ),
-              Flexible(
-                child: buildPerson(
-                  'Madhura Jituri',
-                  'ML model designer',
-                  'assets/sea.jpg',
-                ),
-              ),
-              Flexible(
-                child: buildPerson(
-                  'Samar',
-                  'Image Processing + Deployment',
-                  'assets/sea.jpg',
-                ),
-              ),
-            ],
-          ),
+      extendBodyBehindAppBar: true, appBar: AppBar(
+    iconTheme: IconThemeData(color: Colors.white),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Text(
+          'About Us',
+              style: TextStyle(
+          color: Colors.white,
+                fontWeight: FontWeight.bold,
 
-          SizedBox(height: 30),
-          Text(
-            'Mentor',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          buildPerson(
-            'Tarun Aggarwal',
-            'ECE Department faculty',
-            'assets/sea.jpg',
-          ),
-          SizedBox(height: 30),
-          Text(
-            'About the App\n',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'Our Skin Cancer Detection App is designed to '
-                'help users assess the risk of skin cancer by '
-                'analyzing images of skin lesions. Please note that this app '
-                'is not a substitute for professional medical advice. '
-                'Always consult a healthcare professional for a definitive diagnosis.',
-          ),
-        ],
+      ),
       ),
     ),
+    body: Container(
+      decoration: BoxDecoration(gradient: LinearGradient(colors: [
+        hexStringToColor("074548"),
+        hexStringToColor("bb6162"),
+        hexStringToColor("87a48d"),
+
+      ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter
+      ),),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height:58),
+            Text(
+              'Our Team',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow),
+            ),
+            SizedBox(height:17),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  child: buildPerson(
+                    'Bhavya Malik',
+                    'Flutter App Developer',
+                    'assets/bhavya_pic.jpeg',
+                  ),
+                ),
+                Flexible(
+                  child: buildPerson(
+                    'Madhura Jituri',
+                    'ML model + Image processing',
+                    'assets/madhura_pic.jpeg',
+                  ),
+                ),
+                Flexible(
+                  child: buildPerson(
+                    'Divya',
+                    'Deployment',
+                    'assets/divya_pic.jpeg',
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 14),
+            Text(
+              'Mentor',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.tealAccent),
+            ),
+            buildPerson(
+              'Dr. Tarun Aggarwal',
+              'ECE Department faculty',
+              'assets/tarun_sir_pic.jpeg',
+            ),
+            SizedBox(height: 20),
+            Text(
+              'About the App\n',
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow),
+            ),
+
+            Text(
+              'PneumoScan, a Flutter app, utilizes advanced'
+                  ' ML and image processing to swiftly detect '
+                  'pneumothorax from uploaded chest X-rays.'
+                  ' Streamlining diagnosis, this user-friendly tool '
+                  'enhances healthcare accessibility, providing instant'
+                  ' results for efficient medical interventions.',
+            ),
+          ],
+        ),
+      ),
+    )
+
   );
 }
 
@@ -166,13 +197,17 @@ Widget buildPerson(String name, String description, String imageAsset) {
       Image.asset(
         imageAsset,
         width: 100,
-        height: 100,
+        height: 110,
         fit: BoxFit.cover,
       ),
       SizedBox(height: 10),
       Text(
         name,
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+          fontSize: 17,
+          //color: Colors.greenAccent,
+        ),
       ),
       Text(description),
     ],
