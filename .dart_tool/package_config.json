@@ -254,6 +254,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "get",
+      "rootUri": "file:///Users/bhavyamalik/.pub-cache/hosted/pub.dev/get-4.6.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "http",
       "rootUri": "file:///Users/bhavyamalik/.pub-cache/hosted/pub.dev/http-1.1.0",
       "packageUri": "lib/",
@@ -482,7 +488,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-11-26T13:12:58.555366Z",
+  "generated": "2023-12-01T14:58:50.876688Z",
   "generator": "pub",
   "generatorVersion": "3.2.0"
 }
