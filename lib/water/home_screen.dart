@@ -481,14 +481,14 @@ class _HomeScreenState extends State<HomeScreen> {
       } else {
         print('Failed to send data. Status code: ${response.statusCode}');
         setState(() {
-          diagnosisResult = 'Failed to diagnose skin cancer';
+          diagnosisResult = 'Failed to diagnose pneomothorax';
         });
       }
     }
     catch (e) {
-      print('Error diagnosing skin cancer: $e');
+      print('Error diagnosing pneomothorax: $e');
       setState(() {
-        diagnosisResult = 'Error diagnosing skin cancer';
+        diagnosisResult = 'Error diagnosing pneomothorax';
       });
     }
   }
